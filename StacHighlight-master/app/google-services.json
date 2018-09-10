@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "957331802172",
+    "firebase_url": "https://highlight-f0465.firebaseio.com",
+    "project_id": "highlight-f0465",
+    "storage_bucket": "highlight-f0465.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957331802172:android:fa924560d000779d",
+        "android_client_info": {
+          "package_name": "com.smc.highlight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957331802172-b1on5hrvqboie0tm8ecqdvfdtut7ibqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClZcgJx4hkcE4tIOJoIsoGU4iuiZ2_eYo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

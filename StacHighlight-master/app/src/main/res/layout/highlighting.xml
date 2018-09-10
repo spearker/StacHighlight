@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <ImageView
+       android:id="@+id/highlighting_image"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginBottom="170dp"
+       android:src="@drawable/image"/>
+
+   <com.smc.highlight.Fragment.Highlighting.CustomView
+       android:layout_width="match_parent"
+       android:layout_height="450dp"
+       android:layout_marginBottom="170dp" />
+
+   <Button
+       android:id="@+id/highlighting_sendbutton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentEnd="true"
+       android:layout_below="@+id/highlighting_radioGroup"
+       android:text="보내기" />
+
+   <RadioGroup
+       android:id="@+id/highlighting_radioGroup"
+       android:layout_width="match_parent"
+       android:layout_height="70dp"
+       android:layout_alignParentStart="true"
+       android:layout_below="@+id/highlighting_text"
+       android:orientation="horizontal">
+
+      <RadioButton
+          android:id="@+id/colorButton1"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="10dp"
+          android:button="@drawable/color_select1" />
+
+      <RadioButton
+          android:id="@+id/colorButton2"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="10dp" />
+
+      <RadioButton
+          android:id="@+id/colorButton3"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="10dp" />
+
+      <RadioButton
+          android:id="@+id/colorButton4"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="10dp" />
+
+      <RadioButton
+          android:id="@+id/colorButton5"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="10dp" />
+
+   </RadioGroup>
+
+
+
+   <TextView
+       android:id="@+id/highlighting_text"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentStart="true"
+       android:layout_below="@+id/highlighting_image"
+       android:layout_marginTop="-170dp"
+       android:text="드래그해서 하이라이팅 하세요!"/>
+
+   <EditText
+       android:id="@+id/editText"
+       android:layout_width="295dp"
+       android:layout_height="wrap_content"
+       android:layout_alignParentStart="true"
+       android:layout_alignTop="@+id/highlighting_sendbutton"
+       android:ems="10"
+       android:inputType="text"
+       android:hint="댓글 작성" />
+
+</RelativeLayout>
