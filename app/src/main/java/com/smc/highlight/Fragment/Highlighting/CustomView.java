@@ -52,7 +52,10 @@ public class CustomView extends View {
         canvas.drawPath(path, paint);
     }
 
+}
+
     @Override
+
     public boolean onTouchEvent(MotionEvent event) {
         ha.errorText = (TextView)findViewById(R.id.highlighting_text);
         switch (event.getAction()) {
@@ -86,4 +89,5 @@ public class CustomView extends View {
     }
 
 }
+
 
