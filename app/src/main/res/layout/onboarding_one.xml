@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/cat" />
+        app:srcCompat="@drawable/cat" />
 
     <Button
         android:id="@+id/button2"
