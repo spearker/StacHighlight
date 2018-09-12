@@ -13,10 +13,20 @@
        android:layout_below="@+id/feedback"
        android:src="@drawable/image"
        app:layout_constraintTop_toBottomOf="@+id/feedback"
-       tools:layout_editor_absoluteX="0dp" />
+       tools:layout_editor_absoluteX="0dp"
+       tools:ignore="MissingConstraints" />
+
+   <com.smc.highlight.Fragment.Highlighting.CustomView
+       android:layout_width="match_parent"
+       android:layout_height="270dp"
+       android:layout_alignParentStart="true"
+       android:layout_below="@+id/feedback"
+       tools:layout_editor_absoluteX="0dp"
+       tools:layout_editor_absoluteY="49dp" />
 
 
-g   <ImageView
+
+   <ImageView
        android:id="@+id/feedback"
        android:layout_width="match_parent"
        android:layout_height="48dp"
@@ -76,7 +86,7 @@ g   <ImageView
 
 
    <EditText
-       android:id="@+id/comentt"
+       android:id="@+id/highlighting_comment"
        android:layout_width="272dp"
        android:layout_height="72dp"
        android:layout_marginBottom="16dp"
@@ -91,7 +101,7 @@ g   <ImageView
        app:layout_constraintStart_toStartOf="parent" />
 
    <Button
-       android:id="@+id/button5"
+       android:id="@+id/highlighting_sendbutton"
        android:layout_width="68dp"
        android:layout_height="30dp"
        android:layout_marginBottom="36dp"

@@ -52,12 +52,12 @@ public class CustomView extends View {
         canvas.drawPath(path, paint);
     }
 
-}
+
 
     @Override
 
     public boolean onTouchEvent(MotionEvent event) {
-        ha.errorText = (TextView)findViewById(R.id.highlighting_text);
+        ha.errorText = (TextView)findViewById(R.id.highlighting_comment);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: // 손가락이 디스플레이에 닿았을 때
                 x = event.getX();

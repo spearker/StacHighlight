@@ -46,22 +46,22 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
         button = (Button)findViewById(R.id.highlighting_sendbutton);
         button.setOnClickListener(this);
 
-        errorText = (TextView)findViewById(R.id.highlighting_text);
+        errorText = (TextView)findViewById(R.id.highlighting_comment);
 
-        colorSelected1 = (RadioButton)findViewById(R.id.colorButton1);
-        colorSelected1.setOnClickListener(this);
-
-        colorSelected2 = (RadioButton)findViewById(R.id.colorButton2);
-        colorSelected2.setOnClickListener(this);
-
-        colorSelected3 = (RadioButton)findViewById(R.id.colorButton3);
-        colorSelected3.setOnClickListener(this);
-
-        colorSelected4 = (RadioButton)findViewById(R.id.colorButton4);
-        colorSelected4.setOnClickListener(this);
-
-        colorSelected5 = (RadioButton)findViewById(R.id.colorButton5);
-        colorSelected5.setOnClickListener(this);
+        //colorSelected1 = (RadioButton)findViewById(R.id.colorButton1);
+        //colorSelected1.setOnClickListener(this);
+//
+        //colorSelected2 = (RadioButton)findViewById(R.id.colorButton2);
+        //colorSelected2.setOnClickListener(this);
+//
+        //colorSelected3 = (RadioButton)findViewById(R.id.colorButton3);
+        //colorSelected3.setOnClickListener(this);
+//
+        //colorSelected4 = (RadioButton)findViewById(R.id.colorButton4);
+        //colorSelected4.setOnClickListener(this);
+//
+        //colorSelected5 = (RadioButton)findViewById(R.id.colorButton5);
+        //colorSelected5.setOnClickListener(this);
 
     }
 
@@ -77,21 +77,21 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
                 //childUpdate.put("/"+postNum, highlightValue);
                 finish();
                 break;
-            case R.id.colorButton1: // 여기부터는 색 버튼을 눌렀을 시 CustomView 로 넘어가는 수를 지정해주는 switch문이다.
-                color = 1;
-                break;
-            case R.id.colorButton2:
-                color = 2;
-                break;
-            case R.id.colorButton3:
-                color = 3;
-                break;
-            case R.id.colorButton4:
-                color = 4;
-                break;
-            case R.id.colorButton5:
-                color = 5;
-                break;
+            //case R.id.colorButton1: // 여기부터는 색 버튼을 눌렀을 시 CustomView 로 넘어가는 수를 지정해주는 switch문이다.
+            //    color = 1;
+            //    break;
+            //case R.id.colorButton2:
+            //    color = 2;
+            //    break;
+            //case R.id.colorButton3:
+            //    color = 3;
+            //    break;
+            //case R.id.colorButton4:
+            //    color = 4;
+            //    break;
+            //case R.id.colorButton5:
+            //    color = 5;
+            //    break;
         }
     }
 }
