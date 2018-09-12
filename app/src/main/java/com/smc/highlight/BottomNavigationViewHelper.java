@@ -29,5 +29,6 @@ public class BottomNavigationViewHelper {
         } catch (IllegalAccessException e) {
             Log.e("BNVHelper", "Unable to change value of shift mode", e);
         }
+
     }
 }
