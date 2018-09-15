@@ -26,6 +26,7 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
     Button button;
     TextView errorText;
     ImageView highlighting;
+    CustomView customView;
     RadioButton colorSelected1, colorSelected2, colorSelected3, colorSelected4, colorSelected5;
 
     RecyclerAdapter ra = new RecyclerAdapter();
@@ -51,6 +52,7 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
 
         errorText = (TextView)findViewById(R.id.highlighting_comment);
         highlighting = (ImageView)findViewById(R.id.highlighting_image);
+
 
         DatabaseReference postRef = myRef.child(ra.getPostID());
         //DatabaseReference commentRef = myRef.child();

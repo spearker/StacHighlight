@@ -43,7 +43,7 @@ public class CustomView extends View {
         }else if(ha.color == 5){
             paint.setColor(Color.parseColor("#66e91e63"));
         }else{
-            paint.setColor(Color.parseColor("#ffffff"));
+            paint.setColor(Color.WHITE);
         }
 
         paint.setStyle(Paint.Style.FILL_AND_STROKE);

@@ -3,6 +3,7 @@ package com.smc.highlight.Fragment.Post;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -31,7 +32,7 @@ public class PostActivity extends AppCompatActivity {
     Button button_comments;
 
     //각각의 개채 선언
-    private ListView comments_list;
+    private RecyclerView comments_list;
     private View header;
     private ImageView postImage;
 
@@ -53,7 +54,7 @@ public class PostActivity extends AppCompatActivity {
 
     void init(){
         postImage = (ImageView) findViewById(R.id.post_postimage);
-        comments_list = (ListView) findViewById(R.id.comments_list);
+        comments_list = (RecyclerView) findViewById(R.id.comments_list);
         text_Comments = (EditText) findViewById(R.id.main_comments);
         button_comments = (Button) findViewById(R.id.comment_submit);
 

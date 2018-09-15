@@ -165,23 +165,6 @@ public class PostCamera extends AppCompatActivity {
         Toast.makeText(this, "사진이 앨범에 저장되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
-    //카메라 전용 크랍
-    public void cropImage(){
-        Log.i("cropImage", "Call");
-        Log.i("cropImage", "PhotoURI : " + photoURI + " / albumURI : " + albumURI);
-
-        Intent cropIntent = new Intent("com.android.camera.action.CROP");
-
-        cropIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        cropIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        cropIntent.setDataAndType(photoURI, "image/*");
-        cropIntent.putExtra("aspectX", 1);
-        cropIntent.putExtra("aspectY", 1);
-        cropIntent.putExtra("scale", true);
-        cropIntent.putExtra("output", albumURI);//저장경로
-        startActivityForResult(cropIntent, REQUEST_IMAGE_CROP);
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -212,17 +195,13 @@ public class PostCamera extends AppCompatActivity {
                             albumFile = createImageFile();
                             photoURI = data.getData();
                             albumURI = Uri.fromFile(albumFile);
-                            cropImage();
+
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI);
+                            iv_view.setImageBitmap(rotateImage(bitmap, 90));
                         } catch (IOException e) {
                             Log.e("TAKE_ALBUM_SINGLE ERROR", e.toString());
                         }
                     }
-                }
-                break;
-            case REQUEST_IMAGE_CROP:
-                if(resultCode == Activity.RESULT_OK){
-                    galleryAddPic();
-                    iv_view.setImageURI(albumURI);
                 }
                 break;
         }
