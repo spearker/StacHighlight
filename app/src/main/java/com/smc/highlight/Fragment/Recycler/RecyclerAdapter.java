@@ -4,21 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.smc.highlight.Fragment.Highlighting.HighlightingActivity;
+import com.smc.highlight.Fragment.Post.HashTag;
 import com.smc.highlight.Fragment.Post.PostActivity;
 import com.smc.highlight.R;
 ;
 import com.smc.highlight.models.PostModel;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
@@ -26,8 +34,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     List<PostModel> mPost;
     String username;
     Context context;
+    public static String postID;
 
-    public static int postPosition = -1;
+    public static int postPosition;
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 
@@ -38,6 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         // each data item is just a string in this case
         public TextView username, postdate, desc, highlighting;
         public ImageView userImage, postImage;
+        public ImageButton highlighting_button;
         public CardView cardView;
 
         public ViewHolder(View itemView) {
@@ -47,6 +57,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             postImage = (ImageView)itemView.findViewById(R.id.home_postimage);
             desc = (TextView)itemView.findViewById(R.id.home_desc);
             highlighting = (TextView)itemView.findViewById(R.id.home_highlight);
+            highlighting_button = (ImageButton)itemView.findViewById(R.id.home_highlighter);
             postdate = (TextView)itemView.findViewById(R.id.home_time);
             cardView = (CardView)itemView.findViewById(R.id.home_cardview);
         }
@@ -58,6 +69,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.context = context;
 
     }
+
+    public RecyclerAdapter(){}
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -71,6 +84,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return vh;
     }
 
+    public ArrayList<int[]> getSpans(String body, char prefix) {
+        ArrayList<int[]> spans = new ArrayList<int[]>();
+
+        Pattern pattern = Pattern.compile(prefix + "\\w+");
+        Matcher matcher = pattern.matcher(body);
+
+        // Check all occurrences
+        while (matcher.find()) {
+            int[] currentSpan = new int[2];
+            currentSpan[0] = matcher.start();
+            currentSpan[1] = matcher.end();
+            spans.add(currentSpan);
+        }
+
+        return  spans;
+    }
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
@@ -80,10 +110,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         final String username = mPost.get(position).getUsername();
         final String userImage = mPost.get(position).getUserIamge();
         final String postImage = mPost.get(position).getPostImage();
-        final String desc = mPost.get(position).getDesc();
+        //final String desc = mPost.get(position).getDesc();
         final String highlighting = mPost.get(position).getHighlighting();
         final String postDate = simpleDateFormat.format(mPost.get(position).getDate());
 
+        String commentsText = mPost.get(position).getDesc();
+
+        ArrayList<int[]> hashtagSpans = getSpans(commentsText, '#');
+
+        SpannableString commentsContent =
+                new SpannableString(commentsText);
+
+        for(int i = 0; i < hashtagSpans.size(); i++) {
+            int[] span = hashtagSpans.get(i);
+            int hashTagStart = span[0];
+            int hashTagEnd = span[1];
+
+            commentsContent.setSpan(new HashTag(context), hashTagStart, hashTagEnd, 0);
+
+        }
         holder.username.setText(username);
         Glide.with(context)
                 .load(userImage)
@@ -91,12 +136,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         Glide.with(context)
                 .load(postImage)
                 .into(holder.postImage);
-        holder.desc.setText(desc);
+        holder.desc.setMovementMethod(LinkMovementMethod.getInstance());
+        holder.desc.setText(commentsContent);
         holder.highlighting.setText(highlighting);
         holder.postdate.setText(postDate);
+        holder.highlighting_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postID = mPost.get(position).getPostID();
+                Intent intent = new Intent(context, HighlightingActivity.class);
+                context.startActivity(intent);
+            }
+        });
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                postID = mPost.get(position).getPostID();
                 Intent intent = new Intent(context, PostActivity.class);
                 context.startActivity(intent);
             }
@@ -108,6 +163,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public int getItemCount() {
         return mPost.size();
+    }
+
+    public String getPostID() {
+        return postID;
     }
 }
 

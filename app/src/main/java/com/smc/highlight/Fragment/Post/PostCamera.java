@@ -310,9 +310,11 @@ public class PostCamera extends AppCompatActivity {
 
                     Date now = new Date();
 
-                    PostModel pm = new PostModel("user",downloadURL.toString(),downloadURL.toString(), desc,3, now );
+                    String key = postRef.push().getKey();
 
-                    postRef.push().setValue(pm);
+                    PostModel pm = new PostModel(key, "user",downloadURL.toString(),downloadURL.toString(), desc,3, now );
+
+                    postRef.child(key).setValue(pm);
 
                     Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
                     finish();

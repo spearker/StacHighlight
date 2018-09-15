@@ -77,6 +77,7 @@ public class Fragment_Home extends Fragment{
            public void onDataChange(DataSnapshot dataSnapshot) {
                list.clear();
                int i = (int)dataSnapshot.getChildrenCount();
+               String postID[] = new String[i];
                String username[] = new String[i];
                String postImage[] = new String[i];
                String userImage[] = new String[i];
@@ -86,20 +87,22 @@ public class Fragment_Home extends Fragment{
                int j = 0;
 
                for (DataSnapshot itemSnapshot:dataSnapshot.getChildren()){
-
-                  username[j] = itemSnapshot.child("username").getValue(String.class);
-                  postImage[j] = itemSnapshot.child("postImage").getValue(String.class);
-                  userImage[j] = itemSnapshot.child("userImage").getValue(String.class);
-                  desc[j] = itemSnapshot.child("desc").getValue(String.class);
-                  date[j] = itemSnapshot.child("date").getValue(Date.class);
+                   postID[j] = itemSnapshot.getKey();
+                   username[j] = itemSnapshot.child("username").getValue(String.class);
+                   postImage[j] = itemSnapshot.child("postImage").getValue(String.class);
+                   userImage[j] = itemSnapshot.child("userImage").getValue(String.class);
+                   desc[j] = itemSnapshot.child("desc").getValue(String.class);
+                   date[j] = itemSnapshot.child("date").getValue(Date.class);
 
                   j++;
                }
 
                for(i = (int)dataSnapshot.getChildrenCount() - 1; i >= 0; i--){
-                   PostModel pm = new PostModel(username[i], userImage[i], postImage[i], desc[i], 3, date[i]);
+                   PostModel pm = new PostModel(postID[i], username[i], userImage[i], postImage[i], desc[i], 3, date[i]);
                    list.add(pm);
                }
+
+               Log.d("postID", postID[0]);
 
                mAdapter = new RecyclerAdapter(list, getContext());
                mRecyclerView.setAdapter(mAdapter);

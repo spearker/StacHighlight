@@ -10,16 +10,16 @@ import android.view.ViewGroup;
 
 import com.smc.highlight.R;
 
-public class Fragment_Challenge extends Fragment{
+public class Fragment_Search extends Fragment{
     private final static String ARG_POSITON = "position";
     private int mPosition;
 
-    public static Fragment_Challenge newInstance(int position) {
+    public static Fragment_Search newInstance(int position) {
 
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_POSITON, position);
 
-        Fragment_Challenge fragment = new Fragment_Challenge();
+        Fragment_Search fragment = new Fragment_Search();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -34,7 +34,7 @@ public class Fragment_Challenge extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_challenge, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
         return view;
     }
 }

@@ -15,11 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.google.firebase.database.DatabaseReference;
-import com.smc.highlight.Fragment.Fragment_Challenge;
+import com.smc.highlight.Fragment.Fragment_Search;
 import com.smc.highlight.Fragment.Fragment_Home;
 import com.smc.highlight.Fragment.Fragment_Mypage;
 import com.smc.highlight.Fragment.Fragment_Setting;
@@ -152,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     fragment = Fragment_Home.newInstance(page1);
                     break;
                 case page2:
-                    fragment = Fragment_Challenge.newInstance(page2);
+                    fragment = Fragment_Search.newInstance(page2);
                     break;
                 case page3:
                     fragment = Fragment_Mypage.newInstance(page3);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,8 +22,9 @@
        android:layout_height="270dp"
        android:layout_alignParentStart="true"
        android:layout_below="@+id/feedback"
-       tools:layout_editor_absoluteX="0dp"
-       tools:layout_editor_absoluteY="49dp" />
+       tools:layout_editor_absoluteX="16dp"
+       tools:layout_editor_absoluteY="49dp"
+       tools:ignore="MissingConstraints" />
 
 
 
@@ -67,10 +69,13 @@
        android:layout_height="56dp"
        android:layout_alignTop="@+id/btn_expansion"
        android:layout_centerHorizontal="true"
+       android:layout_marginEnd="8dp"
+       android:layout_marginStart="8dp"
        android:layout_marginTop="16dp"
        android:background="@drawable/highlight"
-       app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
-       tools:layout_editor_absoluteX="152dp" />
+       app:layout_constraintEnd_toStartOf="@+id/btn_size"
+       app:layout_constraintStart_toEndOf="@+id/btn_expansion"
+       app:layout_constraintTop_toBottomOf="@+id/highlighting_image" />
 
    <Button
        android:id="@+id/btn_size"
@@ -95,7 +100,7 @@
        android:ems="12"
        android:gravity="top|left"
        android:hint="하이라이트 후 댓글을 입력해주세요"
-       android:inputType="textPersonName"
+       android:inputType="text"
        android:textSize="14dp"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintStart_toStartOf="parent" />
@@ -111,7 +116,7 @@
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintStart_toEndOf="@+id/comentt" />
+       app:layout_constraintStart_toEndOf="@+id/highlighting_comment" />
 
 
 </android.support.constraint.ConstraintLayout>

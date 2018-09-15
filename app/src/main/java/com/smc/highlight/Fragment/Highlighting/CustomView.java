@@ -43,7 +43,7 @@ public class CustomView extends View {
         }else if(ha.color == 5){
             paint.setColor(Color.parseColor("#66e91e63"));
         }else{
-            paint.setColor(Color.parseColor("#ffffffff"));
+            paint.setColor(Color.parseColor("#ffffff"));
         }
 
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -62,21 +62,18 @@ public class CustomView extends View {
             case MotionEvent.ACTION_DOWN: // 손가락이 디스플레이에 닿았을 때
                 x = event.getX();
                 y = event.getY();
-
-                startX = x;
-                startY = y;
-
                 path.moveTo(x, y); //좌표 이동
                 break;
             case MotionEvent.ACTION_MOVE: // 디스플레이를 누른 채 움질일 때
+                x = event.getX();
+                y = event.getY();
+                path.moveTo(x, y);
+                path.lineTo(x, y);
                 break;
             case MotionEvent.ACTION_UP: // 손가락을 디스플레이에서 떨어트릴 떄
                 if (startX != -1 || endX != -1) {
                     x = event.getX();
                     y = event.getY();
-
-                    endX = x;
-                    endY = y;
 
                     path.lineTo(x, y); //경로에 선 긋기
                 }else{

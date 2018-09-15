@@ -5,15 +5,17 @@ import java.util.Date;
 import java.util.List;
 
 public class PostModel {
+    String postID = "";
     String username = "";
     String userIamge = "";
     String postImage = "";
     String highlighting = "";
     String desc = "";
     Date date = null;
-    List<CommentsDB> comments = new ArrayList<>();
+    List<CommentModel> comments = new ArrayList<>();
 
-    public PostModel(String username, String userImage, String postImage, String desc, int highlighting, Date date){
+    public PostModel(String postID, String username, String userImage, String postImage, String desc, int highlighting, Date date){
+        this.postID = postID;
         this.username = username;
         this.userIamge = userImage;
         this.postImage = postImage;
@@ -46,4 +48,11 @@ public class PostModel {
     public void setHighlighting(int highlighting){ this.highlighting = highlighting + "개"; }
     public void setDate(Date date){ this.date = date; }
 
+    public String getPostID() {
+        return postID;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
+    }
 }
