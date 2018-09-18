@@ -12,6 +12,7 @@ public class PostModel {
     String highlighting = "";
     String desc = "";
     Date date = null;
+    String hashTagLists = "";
     List<CommentModel> comments = new ArrayList<>();
 
     public PostModel(String postID, String username, String userImage, String postImage, String desc, int highlighting, Date date){
@@ -22,6 +23,17 @@ public class PostModel {
         this.desc = desc;
         this.highlighting = highlighting + "개";
         this.date = date;
+    }
+
+    public PostModel(String postID, String username, String userIamge, String postImage, String desc,int highlighting, Date date, String hashTagLists) {
+        this.postID = postID;
+        this.username = username;
+        this.userIamge = userIamge;
+        this.postImage = postImage;
+        this.highlighting = highlighting + "개";
+        this.desc = desc;
+        this.date = date;
+        this.hashTagLists = hashTagLists;
     }
 
     public PostModel(){}
@@ -55,4 +67,5 @@ public class PostModel {
     public void setPostID(String postID) {
         this.postID = postID;
     }
+
 }

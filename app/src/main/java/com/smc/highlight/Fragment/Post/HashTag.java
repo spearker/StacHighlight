@@ -7,7 +7,10 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.smc.highlight.Fragment.Adapter.RecyclerAdapter;
 
 public class HashTag extends ClickableSpan{
     //해시태그 개채 선언
@@ -16,6 +19,10 @@ public class HashTag extends ClickableSpan{
     private ClickEventListener mClickEventListener = null;
     private Context context;
     private TextPaint textPaint;
+    private static String theWord;
+
+    private RecyclerAdapter ra = new RecyclerAdapter();
+    private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Post").child(ra.getPostID());
 
     public HashTag(Context ctx){
         super();
@@ -38,8 +45,12 @@ public class HashTag extends ClickableSpan{
         Spanned s = (Spanned)tv.getText();
         int start = s.getSpanStart(this);
         int end = s.getSpanEnd(this);
-        String theWord = s.subSequence(start + 1, end).toString();
+        theWord = s.subSequence(start + 1, end).toString();
         Log.d("theWord", theWord);
+    }
+
+    public String getTheWord(){
+        return theWord;
     }
 
 }
