@@ -8,16 +8,16 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/home_cardview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -27,9 +27,10 @@
 
                 <ImageView
                     android:id="@+id/home_writerimg"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_margin="7.5dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="16dp"
                     app:srcCompat="@drawable/ic_dashboard_black_24dp" />
 
                 <RelativeLayout
@@ -43,9 +44,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"
-                        android:layout_marginBottom="17dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginBottom="14dp"
                         android:text="고등학교 1학년 / 수학"
-                        android:textSize="12dp" />
+                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/home_writer"
@@ -53,58 +55,37 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginTop="11dp"
-                        android:text="고3 울퉁불퉁 필기남"
-                        android:textSize="17dp" />
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_below="@id/home_detail"
+                        android:text="이름"
+                        android:textSize="18dp" />
 
-                    <TextView
-                        android:id="@+id/home_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginRight="45dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:text="11년 그냥 몰라"
-                        android:textSize="11dp" />
 
                     <ImageButton
                         android:id="@+id/home_settingbutton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
+                        android:layout_width="8dp"
+                        android:layout_height="16dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
                         android:background="@android:color/transparent"
-                        app:srcCompat="@drawable/ic_home_black_24dp" />
+                        app:srcCompat="@drawable/btn_etc" />
                 </RelativeLayout>
 
             </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/home_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="안녕하세요"
-                    android:ellipsize="end"
-                    android:lines="2"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/home_postimage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_below="@+id/home_desc"
-                    android:src="@drawable/image" />
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"/>
+
             </RelativeLayout>
 
 
@@ -115,52 +96,83 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="#a9a9a9" />
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/user_comment"
                 android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp">
-                <ImageButton
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text=""
+                android:textSize="18dp"/>
+            
+            
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp">
+
+                <Button
                     android:id="@+id/home_highlighter"
-                    android:onClick="highlightingClicked"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/ic_home_black_24dp"/>
-                <ImageButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/ic_highlighter"
+                    android:onClick="highlightingClicked" />
+
+
+                <Button
                     android:id="@+id/home_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_home_black_24dp"/>
-                <ImageButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_coment" />
+
+                <Button
                     android:id="@+id/home_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_home_black_24dp"/>
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/btn_share" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp">
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Highlighting" />
+                    android:text="Highlighting"
+                    android:textStyle="bold"
+                    />
+
                 <TextView
                     android:id="@+id/home_highlight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1명"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:text="0개" />
+
+
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/home_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
+                android:text="2018-09-15"
+                android:textSize="12dp" />
 
         </LinearLayout>
 

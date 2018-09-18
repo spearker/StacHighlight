@@ -9,6 +9,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +24,6 @@ import com.smc.highlight.models.PostModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         // each data item is just a string in this case
         public TextView username, postdate, desc, highlighting;
         public ImageView userImage, postImage;
-        public ImageButton highlighting_button;
+        public Button highlighting_button;
         public CardView cardView;
 
         public ViewHolder(View itemView) {
@@ -55,9 +55,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             username = (TextView) itemView.findViewById(R.id.home_writer);
             userImage = (ImageView)itemView.findViewById(R.id.home_writerimg);
             postImage = (ImageView)itemView.findViewById(R.id.home_postimage);
-            desc = (TextView)itemView.findViewById(R.id.home_desc);
+            desc = (TextView)itemView.findViewById(R.id.user_comment);
+
+
+            ////////수정하기
+
+            
             highlighting = (TextView)itemView.findViewById(R.id.home_highlight);
-            highlighting_button = (ImageButton)itemView.findViewById(R.id.home_highlighter);
+            highlighting_button = (Button)itemView.findViewById(R.id.home_highlighter);
             postdate = (TextView)itemView.findViewById(R.id.home_time);
             cardView = (CardView)itemView.findViewById(R.id.home_cardview);
         }

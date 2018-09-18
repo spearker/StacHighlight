@@ -33,7 +33,6 @@ public class PostActivity extends AppCompatActivity {
 
     //각각의 개채 선언
     private RecyclerView comments_list;
-    private View header;
     private ImageView postImage;
 
     Context context;
@@ -99,8 +98,6 @@ public class PostActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     public ArrayList<int[]> getSpans(String body, char prefix) {
         ArrayList<int[]> spans = new ArrayList<int[]>();

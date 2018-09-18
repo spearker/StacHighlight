@@ -10,32 +10,24 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/main_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
+        
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
             app:itemBackground="@color/cardview_light_background"
             app:itemIconTint="@drawable/bottom_menu"
             app:itemTextColor="@drawable/bottom_menu"
             android:layout_gravity="bottom"
             app:menu="@menu/navigation"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="511dp"
             tools:ignore="MissingConstraints"/>
 
+    
+        <ImageView
+            android:id="@+id/actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/actionbar"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
@@ -63,7 +55,7 @@
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_home_black_24dp"
+        app:srcCompat="@drawable/cross"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="486dp" />
 

@@ -11,8 +11,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        main_toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+
         setSupportActionBar(main_toolbar);
 
         //mTextMessage = (TextView) findViewById(R.id.message); textview 설정 인데 없어짐
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 case R.id.bottom_home:
                     viewpager.setCurrentItem(0);
                     return true;
-                case R.id.bottom_challenge:
+                case R.id.bottom_search:
                     viewpager.setCurrentItem(1);
                     return true;
                 case R.id.bottom_mypage:
@@ -99,24 +97,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.action_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_camera:
-                return true;
-            case R.id.action_search:
-                return true;
-        }
 
-        return false;
-    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
