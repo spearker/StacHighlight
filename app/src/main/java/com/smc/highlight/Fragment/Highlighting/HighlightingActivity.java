@@ -1,6 +1,5 @@
 package com.smc.highlight.Fragment.Highlighting;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.smc.highlight.Fragment.Recycler.RecyclerAdapter;
+import com.smc.highlight.Fragment.Adapter.RecyclerAdapter;
 import com.smc.highlight.R;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class HighlightingActivity extends AppCompatActivity implements View.OnClickListener {
     Button button;

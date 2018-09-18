@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.smc.highlight.Fragment.Recycler.RecyclerAdapter;
+import com.smc.highlight.Fragment.Adapter.RecyclerAdapter;
 import com.smc.highlight.models.Item;
 import com.smc.highlight.R;
 

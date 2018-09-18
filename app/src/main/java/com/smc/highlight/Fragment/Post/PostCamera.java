@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +29,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -43,8 +42,13 @@ import com.smc.highlight.models.PostModel;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PostCamera extends AppCompatActivity {
     private static final int MY_PERMISSION_CAMERA = 1111;
@@ -275,25 +279,33 @@ public class PostCamera extends AppCompatActivity {
             Date now = new Date();
             String filename = format.format(now) + ".png";
             String path = "postImage/" + filename;
+
             final String desc = textUpload.getText().toString();
             StorageReference storageReference = storage.getReference(path);
-            //StorageReference storageReference = storage.getReference("gs://highlight-f0465.appspot.com/").child("postImage/" + filename);
             storageReference.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
-
                     downloadURL = taskSnapshot.getDownloadUrl();
-
                     DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("Post");
-
                     Date now = new Date();
 
                     String key = postRef.push().getKey();
 
-                    PostModel pm = new PostModel(key, "user",downloadURL.toString(),downloadURL.toString(), desc,3, now );
+                    Pattern pattern = Pattern.compile("\\#([0-9a-zA-Z가-힣]*)");
+                    Matcher matcher = pattern.matcher(desc);
 
-                    postRef.child(key).setValue(pm);
+                    if (matcher.find()){
+                        // hashtag 뒤에 들어가는 문자열을 list로 불러와 데이터베이스에 넣는다.
+                        String hashtag = desc.substring(matcher.start() + 1, matcher.end());
+                        PostModel pm = new PostModel(key, "user", downloadURL.toString(), downloadURL.toString(), desc, 3, now, hashtag);
+                        postRef.child(key).setValue(pm);
+                    }else{
+                        PostModel pm = new PostModel(key, "user", downloadURL.toString(), downloadURL.toString(), desc, 3, now);
+                        postRef.child(key).setValue(pm);
+
+                    }
+
 
                     Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
                     finish();
@@ -317,4 +329,19 @@ public class PostCamera extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "파일을 선택하세요...", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public ArrayList<int[]> getSpans(String body, char prefix) {
+        ArrayList<int[]> spans = new ArrayList<int[]>();
+        Pattern pattern = Pattern.compile(prefix + "\\w+");
+        Matcher matcher = pattern.matcher(body);
+        // Check all occurrences
+        while(matcher.find()) {
+            int[] currentSpan = new int[2];
+            currentSpan[0] = matcher.start();
+            currentSpan[1] = matcher.end();
+            spans.add(currentSpan);
+        }
+        return spans;
+    }
+
 }

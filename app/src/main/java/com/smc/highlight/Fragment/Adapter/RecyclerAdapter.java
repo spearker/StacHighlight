@@ -1,4 +1,4 @@
-package com.smc.highlight.Fragment.Recycler;
+package com.smc.highlight.Fragment.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +23,6 @@ import com.smc.highlight.models.PostModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,8 +75,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.home_cardview, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_cardview, parent, false);
 
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);

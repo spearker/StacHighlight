@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,11 +19,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.smc.highlight.Fragment.Recycler.RecyclerAdapter;
+import com.smc.highlight.Fragment.Adapter.RecyclerAdapter;
 import com.smc.highlight.R;
+import com.smc.highlight.models.PostModel;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -84,6 +84,7 @@ public class PostActivity extends AppCompatActivity {
 
                 }
 
+
                 pc.setMovementMethod(LinkMovementMethod.getInstance());
                 pc.setText(commentsContent);
 
@@ -99,8 +100,6 @@ public class PostActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     public ArrayList<int[]> getSpans(String body, char prefix) {
         ArrayList<int[]> spans = new ArrayList<int[]>();

@@ -1,4 +1,4 @@
-package com.smc.highlight.Fragment.Recycler;
+package com.smc.highlight.Fragment.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
