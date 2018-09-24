@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -30,6 +31,7 @@ import com.google.firebase.storage.StorageReference;
 import com.smc.highlight.Fragment.Highlighting.HighlightingActivity;
 import com.smc.highlight.Fragment.Post.HashTag;
 import com.smc.highlight.Fragment.Post.PostActivity;
+import com.smc.highlight.MainActivity;
 import com.smc.highlight.R;
 ;
 import com.smc.highlight.models.PostModel;
@@ -194,9 +196,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postID = mPost.get(position).getPostID();
-                Intent intent = new Intent(context, PostActivity.class);
-                context.startActivity(intent);
+               //postID = mPost.get(position).getPostID();
+               //Intent intent = new Intent(context, PostActivity.class);
+               //context.startActivity(intent);
+                Toast.makeText(context, "조금만 기다려주세요!", Toast.LENGTH_SHORT).show();
             }
         });
 
