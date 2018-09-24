@@ -36,8 +36,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     Button mSigninGoogleButton;
     GoogleApiClient mGoogleApiClient;
 
-    LoginButton mSigninFacebookButton;
-    CallbackManager mFacebookCallbackManager;
+    //LoginButton mSigninFacebookButton;
+    //CallbackManager mFacebookCallbackManager;
 
     static final String TAG = LoginActivity.class.getName();
     static final int RC_GOOGLE_SIGN_IN = 9001;
