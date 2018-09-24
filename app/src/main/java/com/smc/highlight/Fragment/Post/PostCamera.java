@@ -36,8 +36,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -75,6 +78,8 @@ public class PostCamera extends AppCompatActivity {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     Bitmap bitmap = null;
+
+    String username;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -315,6 +320,18 @@ public class PostCamera extends AppCompatActivity {
                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
 
 
+                    userRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            username = dataSnapshot.child("username").getValue(String.class);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                     Date now = new Date();
 
@@ -326,7 +343,7 @@ public class PostCamera extends AppCompatActivity {
                     if (matcher.find()){
                         // hashtag 뒤에 들어가는 문자열을 list로 불러와 데이터베이스에 넣는다.
                         String hashtag = desc.substring(matcher.start() + 1, matcher.end());
-                        PostModel pm = new PostModel(key, "user", "UserImage1.png", filename, desc, 3, now, hashtag);
+                        PostModel pm = new PostModel(key, username, "UserImage1.png", filename, desc, 3, now, hashtag);
                         postRef.child(key).setValue(pm);
                     }else{
                         PostModel pm = new PostModel(key, "user", "UserImage1.png", filename, desc, 3, now);

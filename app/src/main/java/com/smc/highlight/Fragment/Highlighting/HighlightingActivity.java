@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +24,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.smc.highlight.Fragment.Adapter.RecyclerAdapter;
 import com.smc.highlight.R;
+import com.smc.highlight.models.CommentModel;
 import com.smc.highlight.models.PostModel;
 
 public class HighlightingActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,6 +38,8 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
     RecyclerAdapter ra = new RecyclerAdapter();
 
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Post");
+
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     public static int count = 0;
 
@@ -103,7 +108,6 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.highlighting_sendbutton:
-                PostModel pm = new PostModel();
                 finish();
                 break;
             case R.id.colorButton1: // 여기부터는 색 버튼을 눌렀을 시 CustomView 로 넘어가는 수를 지정해주는 switch문이다.

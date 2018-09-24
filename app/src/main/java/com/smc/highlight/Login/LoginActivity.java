@@ -148,7 +148,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             if ( result.isSuccess() ) {
                 String token = result.getSignInAccount().getIdToken();
                 AuthCredential credential = GoogleAuthProvider.getCredential(token, null);
-
                 Intent i = new Intent(LoginActivity.this, AdditionalActivity.class);
                 startActivity(i);
                 mFirebaseAuth.signInWithCredential(credential);

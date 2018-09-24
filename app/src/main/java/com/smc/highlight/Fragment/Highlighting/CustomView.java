@@ -19,6 +19,7 @@ public class CustomView extends View {
     Paint paint = new Paint();
     int startX=-1, startY=-1, stopX=-1, stopY=-1;
     HighlightingActivity ha = new HighlightingActivity();
+    int color;
 
     public CustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -33,6 +34,7 @@ public class CustomView extends View {
         switch (ha.color){
             case 1:
                 paint.setColor(Color.argb(80,116,228,255));
+                color = Color.argb(80,116,228,255);
                 break;
             case 2:
                 paint.setColor(Color.argb(80,97,255,109));
