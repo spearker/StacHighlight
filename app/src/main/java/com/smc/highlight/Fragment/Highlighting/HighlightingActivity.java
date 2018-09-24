@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -29,6 +30,7 @@ import com.smc.highlight.models.PostModel;
 
 public class HighlightingActivity extends AppCompatActivity implements View.OnClickListener {
     Button button, btn_highlight;
+    Button button1, button2;
     TextView errorText;
     ImageView highlighting;
     CustomView customView;
@@ -58,6 +60,22 @@ public class HighlightingActivity extends AppCompatActivity implements View.OnCl
 
         errorText = (TextView)findViewById(R.id.highlighting_comment);
         highlighting = (ImageView)findViewById(R.id.highlighting_image);
+
+        button1 = (Button)findViewById(R.id.btn_expansion);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HighlightingActivity.this, "개발중입니다...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button2 = (Button)findViewById(R.id.btn_size);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HighlightingActivity.this, "개발중입니다...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         DatabaseReference postRef = myRef.child(ra.getPostID());

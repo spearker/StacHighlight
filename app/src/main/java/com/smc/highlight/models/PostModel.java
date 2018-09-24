@@ -5,18 +5,30 @@ import java.util.Date;
 import java.util.List;
 
 public class PostModel {
-    String postID = "";
-    String username = "";
-    String userIamge = "";
-    String postImage = "";
-    String highlighting = "";
-    String desc = "";
-    Date date = null;
-    String hashTagLists = "";
-    List<CommentModel> comments = new ArrayList<>();
+    private String postID = "";
+    private String UID = "";
+    private String username = "";
+    private String userIamge = "";
+    private String postImage = "";
+    private String highlighting = "";
+    private String desc = "";
+    private Date date = null;
+    private String hashTagLists = "";
+    private List<CommentModel> comments = new ArrayList<>();
 
     public PostModel(String postID, String username, String userImage, String postImage, String desc, int highlighting, Date date){
         this.postID = postID;
+        this.username = username;
+        this.userIamge = userImage;
+        this.postImage = postImage;
+        this.desc = desc;
+        this.highlighting = highlighting + "개";
+        this.date = date;
+    }
+
+    public PostModel(String postID, String UID, String username, String userImage, String postImage, String desc, int highlighting, Date date){
+        this.postID = postID;
+        this.UID = UID;
         this.username = username;
         this.userIamge = userImage;
         this.postImage = postImage;
@@ -36,7 +48,17 @@ public class PostModel {
         this.hashTagLists = hashTagLists;
     }
 
-    public PostModel(){}
+    public PostModel(String key, String uid, String username, String userImage, String postImage, String desc, int highlighting, Date now, String hashTagLists){
+        this.postID = key;
+        this.UID = uid;
+        this.username = username;
+        this.userIamge = userImage;
+        this.postImage = postImage;
+        this.desc = desc;
+        this.highlighting = highlighting + "개";
+        this.date = now;
+        this.hashTagLists = hashTagLists;
+    }
 
     //get method
 
@@ -68,4 +90,11 @@ public class PostModel {
         this.postID = postID;
     }
 
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
 }

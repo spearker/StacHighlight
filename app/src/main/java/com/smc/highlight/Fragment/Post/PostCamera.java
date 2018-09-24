@@ -64,6 +64,11 @@ public class PostCamera extends AppCompatActivity {
     private static final int REQUEST_TAKE_ALBUM = 3333;
     private static final int REQUEST_IMAGE_CROP = 4444;
 
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+    DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("Post");
+    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
+
     private FloatingActionButton btn_capture, btn_album, btn_menu;
     private Button btn_upload;
     private ImageView iv_view;
@@ -79,7 +84,7 @@ public class PostCamera extends AppCompatActivity {
 
     Bitmap bitmap = null;
 
-    String username;
+    static String username, userImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -307,23 +312,48 @@ public class PostCamera extends AppCompatActivity {
             final String filename = format.format(now) + ".png";
             String path = "postImage/" + filename;
 
+            final PostCamera pc = new PostCamera();
+
             final String desc = textUpload.getText().toString();
             StorageReference storageReference = storage.getReference(path);
             storageReference.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
+                    Log.d("getUID", firebaseUser.getUid().toString());
 
-                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-                    DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("Post");
-                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
-
-
-                    userRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                    userRef.child(firebaseUser.getUid().toString()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            username = dataSnapshot.child("username").getValue(String.class);
+                            String username1;String userImage1;
+
+                            String uid;
+
+                            uid = dataSnapshot.getKey().toString();
+                            username1 = dataSnapshot.child("username").getValue(String.class);
+                            userImage1 = dataSnapshot.child("userImage").getValue(String.class);
+
+                            Date now = new Date();
+
+                            String key = postRef.push().getKey();
+
+                            Pattern pattern = Pattern.compile("\\#([0-9a-zA-Z가-힣]*)");
+                            Matcher matcher = pattern.matcher(desc);
+
+                            if (matcher.find()){
+                                // hashtag 뒤에 들어가는 문자열을 list로 불러와 데이터베이스에 넣는다.
+                                String hashtag = desc.substring(matcher.start() + 1, matcher.end());
+                                PostModel pm = new PostModel(key, uid , username1, userImage1, filename, desc, 3, now, hashtag);
+                                postRef.child(key).setValue(pm);
+                            }else{
+                                PostModel pm = new PostModel(key,uid, username1, userImage1, filename, desc, 3, now);
+                                postRef.child(key).setValue(pm);
+
+                            }
+
+
+                            Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+                            finish();
 
                         }
 
@@ -332,28 +362,6 @@ public class PostCamera extends AppCompatActivity {
 
                         }
                     });
-
-                    Date now = new Date();
-
-                    String key = postRef.push().getKey();
-
-                    Pattern pattern = Pattern.compile("\\#([0-9a-zA-Z가-힣]*)");
-                    Matcher matcher = pattern.matcher(desc);
-
-                    if (matcher.find()){
-                        // hashtag 뒤에 들어가는 문자열을 list로 불러와 데이터베이스에 넣는다.
-                        String hashtag = desc.substring(matcher.start() + 1, matcher.end());
-                        PostModel pm = new PostModel(key, username, "UserImage1.png", filename, desc, 3, now, hashtag);
-                        postRef.child(key).setValue(pm);
-                    }else{
-                        PostModel pm = new PostModel(key, "user", "UserImage1.png", filename, desc, 3, now);
-                        postRef.child(key).setValue(pm);
-
-                    }
-
-
-                    Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

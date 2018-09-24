@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     FirebaseAuth mFirebaseAuth;
     FirebaseAuth.AuthStateListener mFirebaseAuthListener;
 
-    Button mSigninGoogleButton;
+    Button mSigninGoogleButton, registerButton;
     GoogleApiClient mGoogleApiClient;
 
     //LoginButton mSigninFacebookButton;
@@ -118,6 +119,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         //        Log.d(TAG, "Facebook Login Error", error);
         //    }
         //});
+
+        registerButton = (Button)findViewById(R.id.login_register);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "조금만 기다려주세요!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
