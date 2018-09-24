@@ -14,11 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.smc.highlight.Fragment.Adapter.RecyclerAdapter;
 import com.smc.highlight.R;
 import com.smc.highlight.models.PostModel;
@@ -34,6 +37,8 @@ public class PostActivity extends AppCompatActivity {
     //각각의 개채 선언
     private RecyclerView comments_list;
     private ImageView postImage;
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
 
     Context context;
 
@@ -71,6 +76,8 @@ public class PostActivity extends AppCompatActivity {
 
                 ArrayList<int[]> hashtagSpans = getSpans(dPostContents, '#');
 
+                StorageReference storageRef = storage.getReference("postImage/"+dPostImage);
+
                 SpannableString commentsContent =
                         new SpannableString(dPostContents);
 
@@ -88,7 +95,8 @@ public class PostActivity extends AppCompatActivity {
                 pc.setText(commentsContent);
 
                 Glide.with(PostActivity.this)
-                        .load(dPostImage)
+                        .using(new FirebaseImageLoader())
+                        .load(storageRef)
                         .into(postImage);
             }
 

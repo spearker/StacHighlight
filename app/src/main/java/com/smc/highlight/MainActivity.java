@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private Toolbar main_toolbar;
     private ViewPager viewpager;
     private PageAdapter pageAdapter;
+    private MenuItem prevBottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         pageAdapter = new PageAdapter(getSupportFragmentManager());
 
         viewpager = (ViewPager) findViewById(R.id.viewPager);
+        viewpager.addOnPageChangeListener(this);
         viewpager.setAdapter(pageAdapter);
 
     }
@@ -95,11 +97,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
     };
 
-
-
-
-
-
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -107,7 +104,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        navigation.getMenu().getItem(position).setChecked(true);
+        if(prevBottomNavigation != null){
+            prevBottomNavigation.setChecked(false);
+        }
+        prevBottomNavigation = navigation.getMenu().getItem(position);
+        prevBottomNavigation.setChecked(true);
     }
 
     @Override

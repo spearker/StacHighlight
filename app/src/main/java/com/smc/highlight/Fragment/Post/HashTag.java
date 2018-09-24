@@ -21,9 +21,6 @@ public class HashTag extends ClickableSpan{
     private TextPaint textPaint;
     private static String theWord;
 
-    private RecyclerAdapter ra = new RecyclerAdapter();
-    private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Post").child(ra.getPostID());
-
     public HashTag(Context ctx){
         super();
         context = ctx;

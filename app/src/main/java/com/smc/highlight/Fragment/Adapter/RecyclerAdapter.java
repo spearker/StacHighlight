@@ -2,6 +2,7 @@ package com.smc.highlight.Fragment.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -15,6 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.smc.highlight.Fragment.Highlighting.HighlightingActivity;
 import com.smc.highlight.Fragment.Post.HashTag;
 import com.smc.highlight.Fragment.Post.PostActivity;
@@ -37,6 +43,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public static String postID;
 
     public static int postPosition;
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 
@@ -133,16 +142,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             commentsContent.setSpan(new HashTag(context), hashTagStart, hashTagEnd, 0);
 
         }
+
+        StorageReference storageRef = storage.getReference("postImage/"+postImage);
+        StorageReference userRef = storage.getReference("userImage/"+userImage);
+
         holder.username.setText(username);
         Glide.with(context)
-                .load(userImage)
+                .using(new FirebaseImageLoader())
+                .load(userRef)
                 .into(holder.userImage);
         Glide.with(context)
-                .load(postImage)
+                .using(new FirebaseImageLoader())
+                .load(storageRef)
                 .into(holder.postImage);
         holder.desc.setMovementMethod(LinkMovementMethod.getInstance());
         holder.desc.setText(commentsContent);
-        holder.highlighting.setText(highlighting);
+        //holder.highlighting.setText(highlighting);
         holder.postdate.setText(postDate);
         holder.highlighting_button.setOnClickListener(new View.OnClickListener() {
             @Override

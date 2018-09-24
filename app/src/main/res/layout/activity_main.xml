@@ -20,6 +20,7 @@
             app:itemTextColor="@drawable/bottom_menu"
             android:layout_gravity="bottom"
             app:menu="@menu/navigation"
+            app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
             tools:ignore="MissingConstraints"/>
 
     

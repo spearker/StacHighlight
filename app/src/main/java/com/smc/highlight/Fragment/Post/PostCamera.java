@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -24,6 +25,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +34,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -56,12 +61,16 @@ public class PostCamera extends AppCompatActivity {
     private static final int REQUEST_TAKE_ALBUM = 3333;
     private static final int REQUEST_IMAGE_CROP = 4444;
 
-    private Button btn_capture, btn_album, btn_upload;
+    private FloatingActionButton btn_capture, btn_album, btn_menu;
+    private Button btn_upload;
     private ImageView iv_view;
     private EditText textUpload;
     private String mCurrentPhotoPath;
     private Uri imageUri, downloadURL;
     private Uri photoURI, albumURI;
+
+    private Animation fab_open, fab_close;
+    private Boolean isFabOpen = false;
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
@@ -72,16 +81,27 @@ public class PostCamera extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_camera);
 
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
 
-        btn_capture = (Button) findViewById(R.id.btn_capture);
-        btn_album = (Button) findViewById(R.id.btn_album);
+        btn_capture = (FloatingActionButton) findViewById(R.id.btn_capture);
+        btn_album = (FloatingActionButton) findViewById(R.id.btn_album);
+        btn_menu = (FloatingActionButton) findViewById(R.id.btn_menu);
         btn_upload = (Button) findViewById(R.id.btn_upload);
         iv_view = (ImageView) findViewById(R.id.iv_view);
         textUpload = (EditText) findViewById(R.id.text_upload);
 
+        btn_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anim();
+            }
+        });
+
         btn_capture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                anim();
                 captureCamera();
             }
         });
@@ -89,8 +109,10 @@ public class PostCamera extends AppCompatActivity {
         btn_album.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                anim();
                 getAlbum();
-            }        });
+            }
+        });
 
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,7 +299,7 @@ public class PostCamera extends AppCompatActivity {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
             Date now = new Date();
-            String filename = format.format(now) + ".png";
+            final String filename = format.format(now) + ".png";
             String path = "postImage/" + filename;
 
             final String desc = textUpload.getText().toString();
@@ -286,8 +308,14 @@ public class PostCamera extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
-                    downloadURL = taskSnapshot.getDownloadUrl();
+
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
                     DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("Post");
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
+
+
+
                     Date now = new Date();
 
                     String key = postRef.push().getKey();
@@ -298,10 +326,10 @@ public class PostCamera extends AppCompatActivity {
                     if (matcher.find()){
                         // hashtag 뒤에 들어가는 문자열을 list로 불러와 데이터베이스에 넣는다.
                         String hashtag = desc.substring(matcher.start() + 1, matcher.end());
-                        PostModel pm = new PostModel(key, "user", downloadURL.toString(), downloadURL.toString(), desc, 3, now, hashtag);
+                        PostModel pm = new PostModel(key, "user", "UserImage1.png", filename, desc, 3, now, hashtag);
                         postRef.child(key).setValue(pm);
                     }else{
-                        PostModel pm = new PostModel(key, "user", downloadURL.toString(), downloadURL.toString(), desc, 3, now);
+                        PostModel pm = new PostModel(key, "user", "UserImage1.png", filename, desc, 3, now);
                         postRef.child(key).setValue(pm);
 
                     }
@@ -330,18 +358,21 @@ public class PostCamera extends AppCompatActivity {
         }
     }
 
-    public ArrayList<int[]> getSpans(String body, char prefix) {
-        ArrayList<int[]> spans = new ArrayList<int[]>();
-        Pattern pattern = Pattern.compile(prefix + "\\w+");
-        Matcher matcher = pattern.matcher(body);
-        // Check all occurrences
-        while(matcher.find()) {
-            int[] currentSpan = new int[2];
-            currentSpan[0] = matcher.start();
-            currentSpan[1] = matcher.end();
-            spans.add(currentSpan);
+    public void anim() {
+
+        if (isFabOpen) {
+            btn_album.startAnimation(fab_close);
+            btn_capture.startAnimation(fab_close);
+            btn_album.setClickable(false);
+            btn_capture.setClickable(false);
+            isFabOpen = false;
+        } else {
+            btn_album.startAnimation(fab_open);
+            btn_capture.startAnimation(fab_open);
+            btn_album.setClickable(true);
+            btn_capture.setClickable(true);
+            isFabOpen = true;
         }
-        return spans;
     }
 
 }

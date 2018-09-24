@@ -29,6 +29,7 @@
                     android:id="@+id/home_writerimg"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
+                    android:scaleType="fitCenter"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="16dp"
                     app:srcCompat="@drawable/ic_dashboard_black_24dp" />
@@ -82,7 +83,8 @@
                 <ImageView
                     android:id="@+id/home_postimage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"/>
 

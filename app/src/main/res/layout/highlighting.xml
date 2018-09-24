@@ -1,44 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <ImageView
-       android:id="@+id/highlighting_image"
-       android:layout_width="match_parent"
-       android:layout_height="270dp"
-       android:layout_alignParentStart="true"
-       android:layout_below="@+id/feedback"
-       android:layout_marginBottom="8dp"
-       android:src="@drawable/image"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/feedback"
-       app:layout_constraintVertical_bias="0.0"
-       tools:ignore="MissingConstraints"
-       tools:layout_editor_absoluteX="0dp" />
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/backarrow"
+        app:layout_constraintBottom_toBottomOf="@+id/feedback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/highlighting_image"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedback"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <com.smc.highlight.Fragment.Highlighting.CustomView
-        android:layout_width="410dp"
-        android:layout_height="270dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/feedback"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="48dp" />
 
-=======
-       android:layout_marginBottom="8dp"
-       android:layout_marginEnd="8dp"
-       android:layout_marginStart="8dp"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/feedback"
-       app:layout_constraintVertical_bias="0.0" />
->>>>>>> Stashed changes
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/feedback"
+        android:layout_marginBottom="85dp"
+        android:layout_marginTop="397dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <Button
+                android:id="@+id/btn_expansion"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/btn_highlight"
+                android:layout_marginStart="50dp"
+                android:background="@drawable/expresion"
+                app:layout_constraintBottom_toTopOf="@+id/highlighting_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
+                app:layout_constraintVertical_bias="0.029" />
+
+            <Button
+                android:id="@+id/btn_highlight"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/highlighting_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/highlight"
+                app:layout_constraintEnd_toStartOf="@+id/btn_size"
+                app:layout_constraintStart_toEndOf="@+id/btn_expansion"
+                app:layout_constraintTop_toBottomOf="@+id/highlighting_image" />
+            app:layout_constraintBottom_toTopOf="@+id/highlighting_comment"
+            app:layout_constraintEnd_toStartOf="@+id/btn_size"
+            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintStart_toEndOf="@+id/btn_expansion"
+            app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
+            app:layout_constraintVertical_bias="0.025" />
+
+            <RelativeLayout
+                android:id="@+id/highlighting_color"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/btn_expansion"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/colorview"
+                android:visibility="invisible">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <RadioButton
+                            android:id="@+id/colorButton1"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:button="@drawable/color_select1" />
+
+                        <RadioButton
+                            android:id="@+id/colorButton2"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:button="@drawable/color_select2" />
+
+                        <RadioButton
+                            android:id="@+id/colorButton3"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:button="@drawable/color_select3" />
+
+                        <RadioButton
+                            android:id="@+id/colorButton4"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:button="@drawable/color_select4" />
+
+                        <RadioButton
+                            android:id="@+id/colorButton5"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:button="@drawable/color_select5" />
+
+                        <RadioButton
+                            android:id="@+id/colorButton6"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:button="@drawable/color_select6" />
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_size"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/btn_highlight"
+                android:layout_marginEnd="42dp"
+                android:background="@drawable/size"
+                app:layout_constraintBottom_toTopOf="@+id/highlighting_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.991"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
+                app:layout_constraintVertical_bias="0.029" />
+
+        </RelativeLayout>
+    </ScrollView>
+
 
 
    <ImageView
@@ -54,84 +185,21 @@
        app:layout_constraintTop_toTopOf="parent"
        app:srcCompat="@drawable/feedback" />
 
-   <Button
-       android:id="@+id/btn_back"
-       android:layout_width="20dp"
-       android:layout_height="20dp"
-       android:layout_alignParentTop="true"
-       android:layout_marginBottom="14dp"
-       android:layout_marginStart="12dp"
-       android:layout_marginTop="14dp"
-       android:background="@drawable/backarrow"
-       app:layout_constraintBottom_toBottomOf="@+id/feedback"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
 
-   <Button
-       android:id="@+id/btn_expansion"
-       android:layout_width="70dp"
-       android:layout_height="70dp"
-       android:layout_alignParentBottom="true"
-       android:layout_alignParentStart="true"
-       android:layout_marginBottom="8dp"
-       android:layout_marginEnd="8dp"
-       android:layout_marginStart="36dp"
-       android:layout_marginTop="16dp"
-       android:background="@drawable/expresion"
-       app:layout_constraintBottom_toTopOf="@+id/highlighting_comment"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.02"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
-       app:layout_constraintVertical_bias="0.029" />
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"></RelativeLayout>
 
-   <Button
-       android:id="@+id/btn_highlight"
-       android:layout_width="70dp"
-       android:layout_height="70dp"
-       android:layout_alignTop="@+id/btn_expansion"
-       android:layout_centerHorizontal="true"
-       android:layout_marginBottom="8dp"
-       android:layout_marginEnd="8dp"
-       android:layout_marginStart="8dp"
-       android:layout_marginTop="16dp"
-       android:background="@drawable/highlight"
-       app:layout_constraintEnd_toStartOf="@+id/btn_size"
-       app:layout_constraintStart_toEndOf="@+id/btn_expansion"
-       app:layout_constraintTop_toBottomOf="@+id/highlighting_image" />
-       app:layout_constraintBottom_toTopOf="@+id/highlighting_comment"
-       app:layout_constraintEnd_toStartOf="@+id/btn_size"
-       app:layout_constraintHorizontal_bias="0.518"
-       app:layout_constraintStart_toEndOf="@+id/btn_expansion"
-       app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
-       app:layout_constraintVertical_bias="0.025" />
-
-   <Button
-       android:id="@+id/btn_size"
-       android:layout_width="70dp"
-       android:layout_height="70dp"
-       android:layout_alignParentEnd="true"
-       android:layout_alignTop="@+id/btn_expansion"
-       android:layout_marginBottom="8dp"
-       android:layout_marginEnd="36dp"
-       android:layout_marginStart="8dp"
-       android:layout_marginTop="16dp"
-       android:background="@drawable/size"
-       app:layout_constraintBottom_toTopOf="@+id/highlighting_comment"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.991"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/highlighting_image"
-       app:layout_constraintVertical_bias="0.029" />
 
 
     <EditText
         android:id="@+id/highlighting_comment"
         android:layout_width="250dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/coment"
         android:ems="12"
         android:gravity="top|left"
@@ -146,13 +214,15 @@
         android:id="@+id/highlighting_sendbutton"
         android:layout_width="68dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="36dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="21dp"
         android:background="@drawable/feedback_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/highlighting_comment" />
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>
