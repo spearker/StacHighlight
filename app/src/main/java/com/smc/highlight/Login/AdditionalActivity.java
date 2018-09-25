@@ -66,7 +66,7 @@ public class AdditionalActivity extends AppCompatActivity{
         addGender = (CheckBox)findViewById(R.id.add_gender);
 
         addUserBelong = (Spinner)findViewById(R.id.add_userbelong);
-        addUserClass = (Spinner)findViewById(R.id.add_userclass);
+        //addUserClass = (Spinner)findViewById(R.id.add_userclass);
         addInterest = (Spinner)findViewById(R.id.add_userinterest);
 
         addBirthdayText = (TextView)findViewById(R.id.add_birthday_text);
@@ -75,13 +75,9 @@ public class AdditionalActivity extends AppCompatActivity{
         addBirthDay = (Button) findViewById(R.id.add_birthday);
         addInformation = (Button)findViewById(R.id.add_information);
 
-        final String[] list1 = new String[]{"중학생", "고등학생", "재수생", "공시생", "홈스쿨링", "선생님"};
+        final String[] list1 = new String[]{"중학교 1학년", "중학교 2학년", "중학교 3학년", "고등학교 1학년", "고등학교 2학년", "고등학교 3학년", "재수생", "공시생", "홈스쿨링", "선생님"};
         spinnerAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list1);
         addUserBelong.setAdapter(spinnerAdapter);
-
-        String[] list2 = new String[]{"1학년", "2학년", "3학년"};
-        userClassAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list2);
-        addUserClass.setAdapter(userClassAdapter);
 
         String[] list3 = new String[]{"국어", "수학", "사회", "과학", "영어"};
         userIntersetAdepter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list3);
@@ -90,31 +86,11 @@ public class AdditionalActivity extends AppCompatActivity{
         addUserBelong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(parent.getItemAtPosition(position)=="중학생" || parent.getItemAtPosition(position)=="고등학생"){
-                    addUserClass.setVisibility(View.VISIBLE);
-                    userBelong = parent.getItemAtPosition(position).toString();
-                    addUserClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            parent.getItemAtPosition(position);
-                            str1 = parent.getItemAtPosition(position).toString();
-                            userBelong = userBelong + " " + str1;
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                }else{
-                    addUserClass.setVisibility(View.INVISIBLE);
-                    userBelong = parent.getItemAtPosition(position).toString();
-                }
+                userBelong = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                addUserClass.setVisibility(View.INVISIBLE);
             }
         });
 
