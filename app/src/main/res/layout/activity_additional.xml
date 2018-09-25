@@ -68,11 +68,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/add_userbelong"
         android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="834dp"
         android:src="@drawable/user_name"
         android:text="User Name"
         app:layout_constraintBottom_toTopOf="@+id/add_username"
+        app:layout_constraintEnd_toStartOf="@+id/show_gender"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_userimage"
         app:layout_constraintVertical_bias="1.0" />
@@ -84,6 +87,7 @@
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_username"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/block"
@@ -93,24 +97,29 @@
         android:paddingLeft="10dp"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/show_birthday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintVertical_bias="0.961" />
 
     <CheckBox
         android:id="@+id/add_gender"
         android:layout_width="88dp"
         android:layout_height="36dp"
         android:layout_below="@+id/show_username"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
         android:layout_toEndOf="@+id/add_userimage"
         android:button="@drawable/male_female_select"
+        app:layout_constraintBottom_toTopOf="@+id/add_birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toEndOf="@+id/add_username"
-        app:layout_constraintTop_toBottomOf="@+id/add_userimage" />
+        app:layout_constraintTop_toBottomOf="@+id/add_userimage"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/show_birthday"
@@ -118,9 +127,12 @@
         android:layout_height="22dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/add_username"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:text="Date of brith"
         app:layout_constraintBottom_toTopOf="@+id/add_birthday_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -163,9 +175,12 @@
         android:layout_height="22dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/add_birthday_text"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:text="User belong"
         app:layout_constraintBottom_toTopOf="@+id/add_userbelong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
@@ -246,15 +261,16 @@
     <Spinner
         android:id="@+id/add_userinterest"
         android:layout_width="256dp"
-        android:layout_height="36dp"
+        android:layout_height="37dp"
         android:layout_alignTop="@+id/show_interest"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="88dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/block"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="440dp"></Spinner>
+        app:layout_constraintStart_toStartOf="parent"></Spinner>
 
     <Button
         android:id="@+id/add_information"
@@ -277,9 +293,12 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:text="Interest"
         app:layout_constraintBottom_toTopOf="@+id/add_userinterest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
