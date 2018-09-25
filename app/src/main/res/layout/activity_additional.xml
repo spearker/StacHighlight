@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
@@ -11,16 +13,19 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/add_information" />
+        android:src="@drawable/add_information"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="42dp" />
 
     <ImageView
         android:id="@+id/add_userimage"
-        android:layout_width="90dp"
+        android:layout_width="94dp"
         android:layout_height="90dp"
         android:layout_below="@+id/addinformation"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/userimage1" />
+        android:src="@drawable/userimage1"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="118dp" />
 
     <Button
         android:id="@+id/add_userimage_button"
@@ -28,7 +33,9 @@
         android:layout_height="20dp"
         android:layout_alignBottom="@+id/add_userimage"
         android:layout_alignEnd="@+id/add_userimage"
-        android:background="@drawable/add_userimage" />
+        android:background="@drawable/add_userimage"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="188dp" />
 
     <ImageView
         android:id="@+id/show_username"
@@ -36,8 +43,9 @@
         android:layout_height="22dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/add_userbelong"
-        android:layout_marginTop="230dp"
-        android:src="@drawable/user_name" />
+        android:src="@drawable/user_name"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="218dp" />
 
     <EditText
         android:id="@+id/add_username"
@@ -48,7 +56,9 @@
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="240dp" />
 
     <ImageView
         android:id="@+id/show_gender"
@@ -56,8 +66,9 @@
         android:layout_height="28dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/show_username"
-        android:layout_marginEnd="113dp"
-        android:src="@drawable/gender" />
+        android:src="@drawable/gender"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="226dp" />
 
     <CheckBox
         android:id="@+id/add_gender"
@@ -65,7 +76,9 @@
         android:layout_height="51dp"
         android:layout_alignEnd="@+id/add_birthday_text"
         android:layout_below="@+id/show_username"
-        android:button="@drawable/male_female_select" />
+        android:button="@drawable/male_female_select"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="240dp" />
 
     <ImageView
         android:id="@+id/show_birthday"
@@ -73,9 +86,9 @@
         android:layout_height="28dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/add_username"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="42dp"
-        android:src="@drawable/date_of_birth" />
+        android:src="@drawable/date_of_birth"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="291dp" />
 
     <TextView
         android:id="@+id/add_birthday_text"
@@ -83,36 +96,50 @@
         android:layout_height="20dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_birthday"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="0000년 00월 00일"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="315dp" />
 
     <Button
         android:id="@+id/add_birthday"
-        android:layout_width="10dp"
-        android:layout_height="6dp"
+        android:layout_width="12dp"
+        android:layout_height="9dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/add_birthday_text"
-        android:layout_marginEnd="87dp"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/timebutton" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/timebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="319dp" />
 
     <ImageView
         android:id="@+id/show_userbelong"
         android:layout_width="60dp"
         android:layout_height="14dp"
-        android:layout_marginTop="15dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/add_birthday_text"
-        android:src="@drawable/user_belong" />
+        android:src="@drawable/user_belong"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="363dp" />
 
     <Spinner
         android:id="@+id/add_userbelong"
         android:layout_width="133dp"
         android:layout_height="20dp"
-        android:layout_alignEnd="@+id/addinformation"
-        android:layout_below="@+id/show_userbelong"
-        android:layout_marginEnd="135dp"
-        android:layout_marginTop="13dp"></Spinner>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/add_userclass"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="377dp"></Spinner>
 
     <Spinner
         android:id="@+id/add_userclass"
@@ -120,7 +147,9 @@
         android:layout_height="20dp"
         android:layout_alignEnd="@+id/addinformation"
         android:layout_alignTop="@+id/add_userbelong"
-        android:layout_marginEnd="-3dp"></Spinner>
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="377dp"></Spinner>
 
     <RelativeLayout
         android:id="@+id/userimage_pick"
@@ -176,10 +205,11 @@
         android:id="@+id/show_interest"
         android:layout_width="50dp"
         android:layout_height="15dp"
-        android:layout_marginTop="15dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/add_userbelong"
-        android:src="@drawable/interests" />
+        android:src="@drawable/interests"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="420dp" />
 
     <Spinner
         android:id="@+id/add_userinterest"
@@ -187,7 +217,11 @@
         android:layout_height="20dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_interest"
-        android:layout_marginTop="13dp"></Spinner>
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="435dp"></Spinner>
 
     <Button
         android:id="@+id/add_information"
@@ -195,7 +229,8 @@
         android:layout_height="44dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/btn_check" />
+        android:background="@drawable/btn_check"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="497dp" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
