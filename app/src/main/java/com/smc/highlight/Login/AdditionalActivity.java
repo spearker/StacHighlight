@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class AdditionalActivity extends AppCompatActivity{
     Spinner addUserBelong, addUserClass, addInterest;
     EditText addUsername;
     RadioButton userImage1, userImage2, userImage3, userImage4, userImage5;
+    RelativeLayout userImagepick;
 
     ArrayAdapter spinnerAdapter, userClassAdapter, userIntersetAdepter;
 
@@ -54,6 +56,8 @@ public class AdditionalActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additional);
+
+        userImagepick = (RelativeLayout)findViewById(R.id.userimage_pick);
 
         addUserImage = (ImageView) findViewById(R.id.add_userimage);
 
@@ -117,7 +121,7 @@ public class AdditionalActivity extends AppCompatActivity{
         addUserImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                userImagepick.setVisibility(View.VISIBLE);
             }
         });
 
@@ -133,13 +137,12 @@ public class AdditionalActivity extends AppCompatActivity{
             }
         });
 
-
-
         userImage1 = (RadioButton)findViewById(R.id.userimage1);
         userImage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userImage = "userImage1.png";
+                userImagepick.setVisibility(View.GONE);
             }
         });
 
@@ -148,6 +151,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage2.png";
+                userImagepick.setVisibility(View.GONE);
             }
         });
 
@@ -156,6 +160,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage3.png";
+                userImagepick.setVisibility(View.GONE);
             }
         });
 
@@ -164,6 +169,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage4.png";
+                userImagepick.setVisibility(View.GONE);
             }
         });
 
@@ -172,6 +178,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage5.png";
+                userImagepick.setVisibility(View.GONE);
             }
         });
 

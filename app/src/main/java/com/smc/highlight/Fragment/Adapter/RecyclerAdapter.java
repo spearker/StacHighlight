@@ -3,6 +3,7 @@ package com.smc.highlight.Fragment.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -14,16 +15,23 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.smc.highlight.Fragment.Highlighting.HighlightingActivity;
 import com.smc.highlight.Fragment.Post.HashTag;
 import com.smc.highlight.Fragment.Post.PostActivity;
+import com.smc.highlight.MainActivity;
 import com.smc.highlight.R;
 ;
 import com.smc.highlight.models.PostModel;
@@ -54,7 +62,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView username, postdate, desc, highlighting;
+        public TextView username, postdate, desc, highlighting, detail;
         public ImageView userImage, postImage;
         public Button highlighting_button;
         public CardView cardView;
@@ -65,6 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             userImage = (ImageView)itemView.findViewById(R.id.home_writerimg);
             postImage = (ImageView)itemView.findViewById(R.id.home_postimage);
             desc = (TextView)itemView.findViewById(R.id.user_comment);
+            detail = (TextView)itemView.findViewById(R.id.home_detail);
 
 
             ////////수정하기
@@ -116,7 +125,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
@@ -126,6 +135,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //final String desc = mPost.get(position).getDesc();
         final String highlighting = mPost.get(position).getHighlighting();
         final String postDate = simpleDateFormat.format(mPost.get(position).getDate());
+        String uid = mPost.get(position).getUID().toString();
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("User");
+
+        myRef.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String userBelong = dataSnapshot.child("userBelong").getValue(String.class);
+                String userInterest = dataSnapshot.child("userInterest").getValue(String.class);
+               // holder.detail.setText(userBelong + " / " + userInterest);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         String commentsText = mPost.get(position).getDesc();
 
@@ -170,9 +196,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postID = mPost.get(position).getPostID();
-                Intent intent = new Intent(context, PostActivity.class);
-                context.startActivity(intent);
+               //postID = mPost.get(position).getPostID();
+               //Intent intent = new Intent(context, PostActivity.class);
+               //context.startActivity(intent);
+                Toast.makeText(context, "조금만 기다려주세요!", Toast.LENGTH_SHORT).show();
             }
         });
 
