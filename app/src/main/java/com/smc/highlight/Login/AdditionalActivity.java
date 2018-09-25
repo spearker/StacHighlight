@@ -118,6 +118,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage1.png";
+                addUserImage.setImageResource(R.drawable.userimage1);
                 userImagepick.setVisibility(View.GONE);
             }
         });
@@ -127,6 +128,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage2.png";
+                addUserImage.setImageResource(R.drawable.userimage2);
                 userImagepick.setVisibility(View.GONE);
             }
         });
@@ -136,6 +138,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage3.png";
+                addUserImage.setImageResource(R.drawable.userimage3);
                 userImagepick.setVisibility(View.GONE);
             }
         });
@@ -145,6 +148,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage4.png";
+                addUserImage.setImageResource(R.drawable.userimage4);
                 userImagepick.setVisibility(View.GONE);
             }
         });
@@ -154,6 +158,7 @@ public class AdditionalActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userImage = "userImage5.png";
+                addUserImage.setImageResource(R.drawable.userimage5);
                 userImagepick.setVisibility(View.GONE);
             }
         });

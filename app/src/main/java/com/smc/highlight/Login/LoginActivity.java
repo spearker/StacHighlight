@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.smc.highlight.MainActivity;
+import com.smc.highlight.OnBording.OnBording;
 import com.smc.highlight.R;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
@@ -187,7 +188,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(getApplicationContext(), AdditionalActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), OnBording.class);
                             startActivity(intent);
                             finish();
                             Log.d(TAG, "signInWithCredential:success");

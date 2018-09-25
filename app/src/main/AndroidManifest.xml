@@ -31,17 +31,26 @@
 
         </activity>
         <activity android:name=".Login.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Fragment.Post.PostActivity"></activity>
         <activity android:name=".Fragment.Highlighting.HighlightingActivity"></activity>
         <activity android:name=".Fragment.Post.PostCamera">
         </activity>
         <activity android:name=".Login.AdditionalActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OnBording.OnBording3"></activity>
+        <activity android:name=".OnBording.OnBording"></activity>
+        <activity android:name=".OnBording.OnBording2"></activity>
     </application>
 
 </manifest>

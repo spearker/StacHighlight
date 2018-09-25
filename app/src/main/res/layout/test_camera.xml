@@ -37,16 +37,16 @@
 
             <EditText
                 android:id="@+id/text_upload"
-                android:layout_width="268dp"
+                android:layout_width="232dp"
                 android:layout_height="69dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="92dp"
-                android:inputType="textImeMultiLine" />
+                android:inputType="textImeMultiLine"
+                android:layout_alignStart="@+id/write"
+                android:layout_marginTop="92dp" />
 
             <ImageView
                 android:id="@+id/iv_view"
-                android:layout_width="match_parent"
+                android:layout_width="236dp"
                 android:layout_height="322dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
