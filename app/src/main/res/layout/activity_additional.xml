@@ -51,15 +51,12 @@
         android:layout_height="22dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/add_userbelong"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginEnd="104dp"
+        android:font="@font/roboto_regular"
         android:src="@drawable/user_name"
         android:text="Gender"
         app:layout_constraintBottom_toTopOf="@+id/add_gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_userimage"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/show_username"
@@ -72,6 +69,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="834dp"
         android:src="@drawable/user_name"
+        android:font="@font/roboto_regular"
         android:text="User Name"
         app:layout_constraintBottom_toTopOf="@+id/add_username"
         app:layout_constraintEnd_toStartOf="@+id/show_gender"
@@ -83,7 +81,7 @@
     <EditText
         android:id="@+id/add_username"
         android:layout_width="150dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_username"
         android:layout_marginBottom="8dp"
@@ -92,7 +90,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/block"
         android:ems="10"
-        android:hint="Name"
+        android:hint="이름"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:textSize="15dp"
@@ -106,20 +104,17 @@
     <CheckBox
         android:id="@+id/add_gender"
         android:layout_width="88dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/show_username"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
         android:layout_toEndOf="@+id/add_userimage"
         android:button="@drawable/male_female_select"
         app:layout_constraintBottom_toTopOf="@+id/add_birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toEndOf="@+id/add_username"
-        app:layout_constraintTop_toBottomOf="@+id/add_userimage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/add_username" />
 
     <TextView
         android:id="@+id/show_birthday"
@@ -138,7 +133,7 @@
     <TextView
         android:id="@+id/add_birthday_text"
         android:layout_width="255dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_birthday"
         android:layout_marginBottom="12dp"
@@ -147,7 +142,7 @@
         android:background="@drawable/block"
         android:paddingLeft="10dp"
         android:paddingTop="7dp"
-        android:text="0000년 00월 00일"
+        android:text="생년월일"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/show_userbelong"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +181,7 @@
     <Spinner
         android:id="@+id/add_userbelong"
         android:layout_width="255dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/show_userbelong"
         android:layout_marginBottom="88dp"
         android:layout_marginEnd="8dp"
@@ -198,7 +193,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </Spinner>
-
+ㅜ
     <RelativeLayout
         android:id="@+id/userimage_pick"
         android:layout_width="match_parent"
