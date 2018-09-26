@@ -12,12 +12,13 @@ android {
 
     repositories {
         mavenCentral()
+        google()
     }
 
     defaultConfig {
         applicationId "com.smc.highlight"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,173 +37,119 @@ import com.smc.highlight.MainActivity;
 import com.smc.highlight.OnBording.OnBording;
 import com.smc.highlight.R;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
-    FirebaseAuth mFirebaseAuth;
-    FirebaseAuth.AuthStateListener mFirebaseAuthListener;
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+
+    private static final String TAG = "GoogleActivity";
+    private static final int RC_SIGN_IN = 9001;
+
+    // [START declare_auth]
+    private FirebaseAuth mAuth;
+    // [END declare_auth]
+
+    private GoogleSignInClient mGoogleSignInClient;
+    private GoogleApiClient mGoogleApiClient;
 
     Button mSigninGoogleButton, registerButton;
-    GoogleApiClient mGoogleApiClient;
-
-    //LoginButton mSigninFacebookButton;
-    //CallbackManager mFacebookCallbackManager;
-
-    static final String TAG = LoginActivity.class.getName();
-    static final int RC_GOOGLE_SIGN_IN = 9001;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.social_login);
-
-        setTitle("Login");
-
-        /*
-         * Firebase
-         */
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if ( user != null ) {
-                    Log.d(TAG, "sign in");
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-                else {
-                    Log.d(TAG, "sign out");
-                }
-
-            }
-        };
-
-        /*
-         *  Google Login
-         */
-        mSigninGoogleButton = (Button) findViewById(R.id.login_google);
+        mSigninGoogleButton = (Button)findViewById(R.id.login_google);
         mSigninGoogleButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
+            public void onClick(View v) {
+                signIn();
             }
         });
 
+        // [START config_signin]
+        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("957331802172-e5ccrqbicb93plosha5h1c2t1842iks7.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
+        // [END config_signin]
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        /*
-         * Facebook Login
-         */
-        //mFacebookCallbackManager = CallbackManager.Factory.create();
-//
-        //mSigninFacebookButton = (LoginButton) findViewById(R.id.login_facebook);
-        //mSigninFacebookButton.setReadPermissions("email", "public_profile");
-        //mSigninFacebookButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
-        //    @Override
-        //    public void onSuccess(LoginResult loginResult) {
-        //        AuthCredential credential = FacebookAuthProvider.getCredential(loginResult.getAccessToken().getToken());
-        //        mFirebaseAuth.signInWithCredential(credential);
-        //        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-        //        startActivity(i);
-        //    }
-//
-        //    @Override
-        //    public void onCancel() {
-        //        Log.d(TAG, "Facebook login canceled.");
-        //    }
-//
-        //    @Override
-        //    public void onError(FacebookException error) {
-        //        Log.d(TAG, "Facebook Login Error", error);
-        //    }
-        //});
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        registerButton = (Button)findViewById(R.id.login_register);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "조금만 기다려주세요!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // [START initialize_auth]
+        mAuth = FirebaseAuth.getInstance();
+        // [END initialize_auth]
     }
 
+    // [START on_start_check_user]
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-        mFirebaseAuth.addAuthStateListener(mFirebaseAuthListener);
-
-        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-        if(currentUser!=null){ // 만약 로그인이 되어있으면 다음 액티비티 실행
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null){
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();}
     }
+    // [END on_start_check_user]
 
+    // [START onactivityresult]
     @Override
-    protected void onStop() {
-        super.onStop();
-        if ( mFirebaseAuthListener != null )
-            mFirebaseAuth.removeAuthStateListener(mFirebaseAuthListener);
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
 
-        if ( requestCode == RC_GOOGLE_SIGN_IN ) {
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if ( result.isSuccess() ) {
-                String token = result.getSignInAccount().getIdToken();
-                AuthCredential credential = GoogleAuthProvider.getCredential(token, null);
+            if(result != null){
+                if (result.isSuccess()){
+                    GoogleSignInAccount acct = result.getSignInAccount();
+                    firebaseAuthWithGoogle(acct);
+                    startActivity(new Intent(this, OnBording.class));
+                    finish();
+                }
+            }
 
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            }
-            else {
-                Log.d(TAG, "Google Login Failed." + result.getStatus());
-            }
         }
     }
+    // [END onactivityresult]
+
+    // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        // [START_EXCLUDE silent]
+        // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mFirebaseAuth.signInWithCredential(credential)
+        mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(getApplicationContext(), OnBording.class);
-                            startActivity(intent);
-                            finish();
                             Log.d(TAG, "signInWithCredential:success");
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
                         }
 
-                        // ...
                     }
                 });
     }
+    // [END auth_with_google]
+
+    // [START signin]
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+    // [END signin]
 
 }
