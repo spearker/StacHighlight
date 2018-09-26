@@ -66,7 +66,6 @@ public class AdditionalActivity extends AppCompatActivity{
         addGender = (CheckBox)findViewById(R.id.add_gender);
 
         addUserBelong = (Spinner)findViewById(R.id.add_userbelong);
-        addUserClass = (Spinner)findViewById(R.id.add_userclass);
         addInterest = (Spinner)findViewById(R.id.add_userinterest);
 
         addBirthdayText = (TextView)findViewById(R.id.add_birthday_text);

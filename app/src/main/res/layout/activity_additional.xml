@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     xmlns:tools="http://schemas.android.com/tools">
 
 
@@ -52,14 +53,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/add_userbelong"
         android:layout_marginBottom="4dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="88dp"
         android:layout_marginTop="48dp"
         android:src="@drawable/user_name"
         android:text="Gender"
+        android:font="@font/roboto_regular"
         app:layout_constraintBottom_toTopOf="@+id/add_gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_userimage"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.833" />
 
     <TextView
         android:id="@+id/show_username"
@@ -71,6 +73,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="834dp"
+        android:font="@font/roboto_regular"
         android:src="@drawable/user_name"
         android:text="User Name"
         app:layout_constraintBottom_toTopOf="@+id/add_username"
@@ -78,12 +81,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_userimage"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.994" />
 
     <EditText
         android:id="@+id/add_username"
         android:layout_width="150dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_username"
         android:layout_marginBottom="8dp"
@@ -92,7 +95,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/block"
         android:ems="10"
-        android:hint="Name"
+        android:hint="이름"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:textSize="15dp"
@@ -105,21 +108,18 @@
 
     <CheckBox
         android:id="@+id/add_gender"
-        android:layout_width="88dp"
-        android:layout_height="36dp"
+        android:layout_width="96dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/show_username"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
         android:layout_toEndOf="@+id/add_userimage"
         android:button="@drawable/male_female_select"
         app:layout_constraintBottom_toTopOf="@+id/add_birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toEndOf="@+id/add_username"
-        app:layout_constraintTop_toBottomOf="@+id/add_userimage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/add_username" />
 
     <TextView
         android:id="@+id/show_birthday"
@@ -130,6 +130,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:text="Date of brith"
+        android:font="@font/roboto_regular"
         app:layout_constraintBottom_toTopOf="@+id/add_birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -138,16 +139,16 @@
     <TextView
         android:id="@+id/add_birthday_text"
         android:layout_width="255dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/show_birthday"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:hint="생년월일"
         android:background="@drawable/block"
         android:paddingLeft="10dp"
         android:paddingTop="7dp"
-        android:text="0000년 00월 00일"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/show_userbelong"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +179,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="52dp"
         android:text="User belong"
+        android:font="@font/roboto_regular"
         app:layout_constraintBottom_toTopOf="@+id/add_userbelong"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -186,12 +188,13 @@
     <Spinner
         android:id="@+id/add_userbelong"
         android:layout_width="255dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/show_userbelong"
         android:layout_marginBottom="88dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/block"
+        android:hint="직군"
         app:layout_constraintBottom_toTopOf="@+id/add_information"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -256,18 +259,20 @@
         android:layout_marginTop="15dp"
         android:layout_alignStart="@+id/show_username"
         android:layout_below="@+id/add_userbelong"
+        android:font="@font/roboto_regular"
         android:src="@drawable/interests" />
 
     <Spinner
         android:id="@+id/add_userinterest"
         android:layout_width="256dp"
-        android:layout_height="37dp"
+        android:layout_height="40dp"
         android:layout_alignTop="@+id/show_interest"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="88dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/block"
+        android:hint="관심분야"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></Spinner>
